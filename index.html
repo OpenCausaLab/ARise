@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ARise: Towards Knowledge-Augmented Reasoning via Risk-Adaptive Search</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; background: #f9f9f9; color: #333; }
+    header { background: #1a1a1a; color: white; padding: 2rem 1rem; text-align: center; }
+    main { padding: 2rem; max-width: 900px; margin: auto; }
+    section { margin-bottom: 3rem; }
+    h1, h2, h3 { color: #111; }
+    pre { background: #eee; padding: 1rem; overflow-x: auto; }
+    code { font-family: monospace; }
+    a { color: #007acc; }
+    footer { background: #1a1a1a; color: white; text-align: center; padding: 1rem; margin-top: 3rem; }
+    img.figure { max-width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); margin: 1.5rem 0; }
+    .figure-caption { font-style: italic; margin-top: 0.5rem; text-align: center; color: #555; }
+    .highlight { background-color: #f0f7ff; padding: 1rem; border-left: 4px solid #007acc; margin: 1rem 0; }
+    em { font-style: italic; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1 style="color: white;">ARise: Towards Knowledge-Augmented Reasoning via Risk-Adaptive Search</h1>
+  <p>A novel framework for knowledge-augmented reasoning in large language models</p>
+  <div style="margin-top: 20px;">
+    <a href="https://github.com/OpenCausaLab/ARise" style="display: inline-block; background-color: white; color: black; padding: 10px 20px; text-decoration: none; border-radius: 4px; margin-right: 10px; font-weight: bold;">Code</a>
+    <a href="https://arxiv.org/abs/2504.10893" style="display: inline-block; background-color: white; color: black; padding: 10px 20px; text-decoration: none; border-radius: 4px; font-weight: bold;">Paper</a>
+  </div>
+</header>
+
+<main>
+  <section style="text-align: center; margin-bottom: 2rem;">
+    <div style="margin-bottom: 1rem;">
+      <span>Yize Zhang<sup>1,2,3*</sup></span> &nbsp;&nbsp;
+      <span>Tianshu Wang<sup>4,5,7*</sup></span> &nbsp;&nbsp;
+      <span>Sirui Chen<sup>1,6</sup></span> <br>
+      <span>Kun Wang<sup>4</sup></span> &nbsp;&nbsp;
+      <span>Xingyu Zeng<sup>4</sup></span> &nbsp;&nbsp;
+      <span>Hongyu Lin<sup>5</sup></span> <br>
+      <span>Xianpei Han<sup>5</sup></span> &nbsp;&nbsp;
+      <span>Le Sun<sup>5</sup></span> &nbsp;&nbsp;
+      <span>Chaochao Lu<sup>1,2†</sup></span>
+    </div>
+    <div style="font-size: 0.9em; line-height: 1.6;">
+      <div><sup>1</sup>Shanghai AI Laboratory &nbsp;&nbsp; <sup>2</sup>Shanghai Innovation Institute &nbsp;&nbsp; <sup>3</sup>Shanghai Jiao Tong University</div>
+      <div><sup>4</sup>SenseTime &nbsp;&nbsp; <sup>5</sup>Institute of Software, Chinese Academy of Sciences &nbsp;&nbsp; <sup>6</sup>Tongji University</div>
+      <div><sup>7</sup>Hangzhou Institute for Advanced Study, University of Chinese Academy of Sciences</div>
+      <div style="margin-top: 0.5rem;"><span style="font-family: monospace;">ez220523@sjtu.edu.cn, tianshu2020@iscas.ac.cn, luchaochao@pjlab.org.cn</span></div>
+      <div style="margin-top: 0.5rem; font-size: 0.8em;"><sup>*</sup>Equal contribution. <sup>†</sup>Corresponding author.</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>🧠 Abstract</h2>
+    <p>
+      Large language models (LLMs) have demonstrated impressive capabilities and are receiving increasing attention to enhance their reasoning through scaling test-time compute.
+      However, their application in <em>open-ended, knowledge-intensive, complex reasoning</em> scenarios is still limited.
+    </p>
+    <p>
+      Reasoning-oriented methods struggle to generalize to open-ended scenarios due to implicit assumptions of complete world knowledge.
+      Meanwhile, knowledge-augmented reasoning (KAR) methods fails to address two core challenges:
+    </p>
+    <ol>
+      <li><strong>Error propagation</strong>: where errors in early steps cascade through the chain</li>
+      <li><strong>Verification bottleneck</strong>: where the explore–exploit trade-off arises in multi-branch decision processes</li>
+    </ol>
+    <p>
+      To overcome these limitations, we introduce ARise, a novel framework that integrates risk assessment of intermediate reasoning states with dynamic
+      retrieval-augmented generation (RAG) within a Monte Carlo tree search paradigm. This approach enables effective construction and optimization of reasoning
+      plans across multiple maintained hypothesis branches.
+    </p>
+    <p>
+      Experimental results show that ARise significantly outperforms the state-of-the-art KAR methods by up to 23.10%, and the latest RAG-equipped large reasoning models by up to 25.37%.
+    </p>
+  </section>
+
+  <section>
+    <h2>🚀 Key Features</h2>
+    <ul>
+      <li>✅ <strong>Iterative Refinement through Decomposition</strong>: Breaks down complex reasoning tasks into manageable steps</li>
+      <li>📚 <strong>Retrieval-then-Reasoning</strong>: Augments LLMs with fine-grained knowledge retrieval</li>
+      <li>🌲 <strong>Monte Carlo Tree Search</strong>: Mitigates error propagation by enabling exploration of multiple branches</li>
+      <li>📈 <strong>Risk-Adaptive Search</strong>: Uses Bayesian risk minimization to select a promising reasoning path</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>🔍 Method: ARise Pipeline</h2>
+    <div class="figure-container">
+      <img src="asset/pipe.png" alt="ARise Pipeline" class="figure" />
+      <p class="figure-caption">Figure 1: ARise Pipeline Overview</p>
+    </div>
+    <div class="highlight">
+      <p>
+        ARise iteratively refines reasoning steps through decomposition, retrieval-then-reasoning, providing fine-grained knowledge for LLMs.
+        MCTS treats each step as a node in the search tree, expanding linear reasoning to mitigate error propagation by enabling exploration
+        of reasoning paths and allowing backtracking when necessary. Risk assessment leverages Bayesian risk minimization to evaluate the quality
+        of each reasoning state, dynamically optimizing action strategies to guide the search towards promising directions.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <h2>📊 Experimental Results</h2>
+
+    <h3>Comparison with Baseline Methods</h3>
+    <div class="figure-container">
+      <img src="asset/com.png" alt="Comparison with Baseline Methods" class="figure" />
+      <p class="figure-caption">Figure 2: Comparison with Baseline Methods</p>
+    </div>
+    <div class="highlight">
+      <p>
+        ARise demonstrates superior performance.
+        Specifically, on the Qwen2.5-14B-Instruct model, ARise outperforms across all benchmarks, achieving an absolute improvement of 19.83% in EM over the vanilla RAG method, 13.29% over prompt-based baselines, and 15.5% over search-based baselines.
+      </p>
+      <p>
+        ARise maintains robust performance on the Qwen2.5-7B-Instruct model with an absolute improvement of 13.67% in EM over the vanilla RAG method and overall surpasses various baselines.
+        We observed that ARise performs slightly worse on Llama models.
+        Nevertheless, ARise still maintains a notable F1 advantage on Llama, indicating its effectiveness in selecting more promising paths.
+      </p>
+    </div>
+
+    <h3>Comparison with Large Reasoning Models (LRMs)</h3>
+    <div class="figure-container">
+      <img src="asset/res.png" alt="Comparison with Large Reasoning Models" class="figure" style="width:50%; display: block; margin-left: auto; margin-right: auto;" />
+      <p class="figure-caption">Figure 3: Comparison with Large Reasoning Models</p>
+    </div>
+    <div class="highlight">
+      <p>
+        Learning-based LRMs like DeepSeek-R1 distilled models have not yet approached the point where they can effectively match or even replace search-based reasoning methods in terms of performance.
+      </p>
+      <p>
+        Our empirical comparison between base models with ARise and the DeepSeek-R1 distilled models reveals key insights into the effectiveness of test-time search.
+        These learning-based LRMs extract the similar reasoning pattern from DeepSeek-R1.
+        ARise exhibits a performance advantage over the LRMs, especially on the Qwen model series.
+        On average, ARise shows a relative improvement of 4.03\%, emphasizing the benefit of our search-based method.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <h2>📄 Citation</h2>
+    <pre><code>@article{zhang2025arise,
+  title   = {ARise: Towards Knowledge-Augmented Reasoning via Risk-Adaptive Search},
+  author  = {Yize Zhang and Tianshu Wang and Sirui Chen and Kun Wang and Xingyu Zeng and Hongyu Lin and Xianpei Han and Le Sun and Chaochao Lu},
+  year    = {2025},
+  journal = {arXiv preprint arXiv:2504.10893}
+}</code></pre>
+  </section>
+</main>
+
+<footer>
+  &copy; 2025 OpenCausaLab, Shanghai AI Laboratory
+</footer>
+
+</body>
+</html>

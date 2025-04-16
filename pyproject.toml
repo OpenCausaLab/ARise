@@ -1,0 +1,25 @@
+# https://github.com/microsoft/pyright
+[tool.pyright]
+include = ["src"]
+venv = "mcts"
+typeCheckingMode = "off"
+useLibraryCodeForTypes = true
+
+# https://github.com/charliermarsh/ruff
+[tool.ruff]
+fix = true
+line-length = 88
+target-version = "py312"
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle
+    "F",   # Pyflakes
+    "UP",  # pyupgrade
+    "B",   # flake8-bugbear
+    "SIM", # flake8-simplify
+    "I",   # isort
+]
+ignore = ["E501"]
+# https://github.com/timothycrosley/isort/
+[tool.ruff.lint.isort]
+combine-as-imports = true
