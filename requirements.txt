@@ -1,0 +1,8 @@
+nltk==3.9.1
+numpy==2.2.5
+retriv==0.2.3
+scikit_learn==1.6.1
+sentence_transformers==3.3.1
+torch==2.3.1+cu118
+tqdm==4.66.5
+transformers==4.47.0
