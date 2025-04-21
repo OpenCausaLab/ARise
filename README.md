@@ -40,46 +40,6 @@ ARise/
 └── nltk_data.zip           # NLTK data package
 ```
 
-## Requirements
-
-- Python 3.12+
-- PyTorch
-- Transformers
-- NLTK (included as nltk_data.zip)
-- Other dependencies as specified in pyproject.toml
-
-## Installation
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/OpenCausaLab/ARise.git
-   cd ARise
-   ```
-
-2. Install dependencies:
-   ```bash
-   pip install -e .
-   ```
-
-3. Extract NLTK data:
-   ```bash
-   unzip nltk_data.zip -d $HOME
-   ```
-
-## Usage
-
-Run the main script with:
-
-```bash
-python run.py
-```
-
-The script will:
-1. Load the dataset from the specified path
-2. Initialize the language model
-3. Process each example using the specified reasoning strategy
-4. Evaluate the results and save outputs
-
 ## Configuration
 
 Key parameters can be configured in the `MCTSTask` class:
