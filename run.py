@@ -10,7 +10,7 @@ from src.base import ToT_task, baseline_task
 from src.task import MCTSTask
 from utils.verify import F1_score_compute, exact_match
 
-DATA_PATH = "./data/Wiki/data_s1.json"
+DATA_PATH = "./data/demo.json"
 
 
 def setup_logging():

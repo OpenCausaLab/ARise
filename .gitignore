@@ -11,7 +11,6 @@ results/
 nltk_data/
 test.py
 debug.log
-data/
 divide.py
 debug.log_gpu0
 debug.log_gpu1
