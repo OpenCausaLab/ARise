@@ -14,3 +14,4 @@ debug.log
 divide.py
 debug.log_gpu0
 debug.log_gpu1
+.DS_Store

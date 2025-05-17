@@ -2,6 +2,8 @@
 
 ARise is an advanced reasoning framework that implements Monte Carlo Tree Search (MCTS) for complex question answering tasks. The system decomposes complex questions into manageable sub-questions, retrieves relevant information, and synthesizes a final answer through iterative search and risk-assessment.
 
+📢 **News**: Our paper has been accepted to ACL 2025 main conference!
+
 **Project homepage**: [https://opencausalab.github.io/ARise/](https://opencausalab.github.io/ARise/)
 
 ![ARise Pipeline](asset/pipe.png)
