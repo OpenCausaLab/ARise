@@ -66,10 +66,10 @@ The system evaluates performance using:
 If you use ARise in your research, please cite:
 
 ```
-@article{zhang2025arise,
+@inproceedings{zhang2025arise,
   title   = {ARise: Towards Knowledge-Augmented Reasoning via Risk-Adaptive Search},
   author  = {Yize Zhang and Tianshu Wang and Sirui Chen and Kun Wang and Xingyu Zeng and Hongyu Lin and Xianpei Han and Le Sun and Chaochao Lu},
-  year    = {2025},
-  journal = {arXiv preprint arXiv:2504.10893}
+  booktitle={Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (ACL)},
+  year    = {2025}
 }
 ```
